@@ -17,6 +17,7 @@ artistas = ['AMANDA MARTINS', 'ANDRE GATTO', 'ESTEVAO BRITTO', 'FELIPE DE QUEIRO
             'KATIA DE MEDEIROS', 'KARLA LUZ', 'ISABELLA RIBEIRO', 'THAIS FIUZA', 'WAGNER MAIA']
 jornais = ['H1', 'BDDF', 'BDBR', 'DF1', 'GE', 'JH', 'DF2',
            'JN', 'JG', 'GNEWS', 'MH16', 'MH18', 'J10', 'ED16', 'ED18']
+GNEWSjornais = ['MH16', 'MH18', 'J10', 'ED16', 'ED18']
 meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 DIASmesesAno = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -43,12 +44,13 @@ saveDate = saveDate.strftime("%y-%m-%d")
 saveMonth = saveDate[0:5]
 
 #CSV_filter = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\CSV_FINAL\\relatorios_" + str(saveMonth)
-CSV_filter = r"C:\Users\gusvi\OneDrive\Área de Trabalho\_PROJETOS\Python_autoTypeform\CSV_FINAL\relatorios_" + str(saveMonth)
+CSV_filter = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\CSV_FINAL\\relatorios_22-01"
 files = Path(CSV_filter).rglob('*.csv')
 df = pd.concat(map(pd.read_csv, files))
 
-##print(df.columns)
-##print(df.head())
+#print(df.columns)
+#print(df["DIA"])
+#print(df.loc[df['DIA'] == 24])
 
 
 ## CRIANDO COLUNAS DOS DIAS DO MÊS PARA GRÁFICOS
@@ -73,6 +75,8 @@ df_DIASdoMES['zeros'] = 0
 r1 = plt.figure(figsize=(10,12))
 sns.set(style='darkgrid', font_scale=1)
 
+
+
 ##  TOTAL ARTES x DIAS DO MÊS
 
 df_TM = df['DIA'].value_counts().reset_index()      #soma as ocorrencias de um valor
@@ -87,6 +91,7 @@ df_Finalmes.drop('zeros', axis=1, inplace=True)
 ## FIM CRIA 30 LINHAS
 
 
+
 ##  TOTAL GERAL ARTES x DIAS DO MÊS
 
 df_Finalmes['TOTAL GERAL'] = df_Finalmes['Total de artes']
@@ -97,8 +102,8 @@ for i in ranMES:
     else:
         df_Finalmes.iloc[i,2] = df_Finalmes.iloc[i,2] + df_Finalmes.iloc[i-1,2]
 
-#print(df_Finalmes)
-#print(df_Finalmes.iloc[3,2])
+
+
 
 r1.add_subplot(4,1,1)
 sns.lineplot(data=df_Finalmes, x='Dia', y='TOTAL GERAL').set_title('Total Artes no Mês')
@@ -131,9 +136,9 @@ sns.barplot(data=df_JM_final, x='Produção', y='Total de artes por mês').set_t
 
 ##  IMPRIMINDO E SALVANDO RELATORIO 01
 
-##Report01 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 01_" + str(saveMonth) + ".png"
+Report01 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 01_" + str(saveMonth) + ".png"
 plt.tight_layout()
-##plt.savefig(Report01)
+plt.savefig(Report01)
 
 
 
@@ -167,9 +172,9 @@ for i in enumerate(reportJORNAIS):
     sns.barplot(data=df_DIN, x='Dia', y='Total de artes').set_title('Total Artes ' + str(prodDin) + ' no Mês')
 
 
-##Report02 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 02_" + str(saveMonth) + ".png"
+Report02 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 02_" + str(saveMonth) + ".png"
 plt.tight_layout()
-##plt.savefig(Report02)
+plt.savefig(Report02)
 
 
 
@@ -203,10 +208,10 @@ for i in enumerate(reportART):
     sns.barplot(data=df_DIN, x='Dia', y='Total de artes').set_title('Total Artes ' + str(prodDinArt) + ' no Mês')
 
 
-##Report03 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 03_" + str(saveMonth) + ".png"
+Report03 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 03_" + str(saveMonth) + ".png"
 plt.tight_layout()
-##plt.savefig(Report03)
-#plt.show()
+plt.savefig(Report03)
+plt.show()
 
 
 
@@ -236,27 +241,27 @@ def distProd(prod):
 ##    sns.kdeplot(data=df_DIN, shade=True, label=str(prodDin)).set_title('Distribuição Diária Artes ' + str(prodDin) + ' no Mês')
 
 distBDDF = distProd('BDDF')
-sns.kdeplot(data=distBDDF, shade=True, label=str('BDDF'))
+sns.histplot(data=distBDDF, binwidth=.1)
 
-distBDDF = distProd('JH')
-sns.kdeplot(data=distBDDF, shade=True, label=str('JH'))
-
-distBDDF = distProd('DF1')
-sns.kdeplot(data=distBDDF, shade=True, label=str('DF1'))
-
-distBDDF = distProd('DF2')
-sns.kdeplot(data=distBDDF, shade=True, label=str('DF2'))
-
-distBDDF = distProd('JN')
-sns.kdeplot(data=distBDDF, shade=True, label=str('JN'))
-
-distBDDF = distProd('JG')
-sns.kdeplot(data=distBDDF, shade=True, label=str('JG'))
+##distBDDF = distProd('JH')
+##sns.kdeplot(data=distBDDF, shade=True, label=str('JH'))
+##
+##distBDDF = distProd('DF1')
+##sns.kdeplot(data=distBDDF, shade=True, label=str('DF1'))
+##
+##distBDDF = distProd('DF2')
+##sns.kdeplot(data=distBDDF, shade=True, label=str('DF2'))
+##
+##distBDDF = distProd('JN')
+##sns.kdeplot(data=distBDDF, shade=True, label=str('JN'))
+##
+##distBDDF = distProd('JG')
+##sns.kdeplot(data=distBDDF, shade=True, label=str('JG'))
 
 plt.xticks([0,17280])
 plt.xlabel('horas do dia', fontsize=18)
 plt.legend()    
-plt.show()
+#plt.show()
 
 ##print(df.columns)
 ##print(df.head())

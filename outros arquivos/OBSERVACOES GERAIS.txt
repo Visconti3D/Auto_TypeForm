@@ -1,0 +1,16 @@
+C:\Users\gvisconti\AppData\Local\Programs\Python\Python39\Scripts
+
+Arquivo BAT executa automáticamente pelo
+AGENDADOR DE TAREFAS
+
+
+HOW TO PACK TO EXE:
+
+pyinstaller --onefile MXF_filter_v2.0.py
+
+pyinstaller --onefile -w ScriptName. py
+
+
+
+if __name__ == '__main__':
+    main()
