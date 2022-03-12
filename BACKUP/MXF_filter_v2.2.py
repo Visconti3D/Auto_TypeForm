@@ -5,7 +5,7 @@
 
 
 ##SCRIPT PARA LEITURA DAS ARTES ENTREGUES
-##versão 1.0
+##versão 2.2
 ##
 ##CRIAÇÃO DE ARQUIVO CSV COM A SEGUINTE FORMATAÇÃO:
 ##    -nome arquivo entregue
@@ -51,7 +51,7 @@ from glob import glob
 
 # LISTAS CDESIGN - variáveis para filtros
 
-CSV_dir = "S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\CSV_FINAL"
+CSV_dir = "S:\\A R Q U I V O S\\FERRAMENTAS\\GitRepository\\Auto_Typeform\\CSV_FINAL"
 var_nula = 'x'
 tiposArtes = ['ARTE', 'DESTAQUE', 'FOTO', 'TELA', 'PASSEIO', 'DISPLAY', 'MAPA', 'GRAFICO']
 siglasArtistas = ['AMB', 'AGB', 'EBV', 'FQB', 'GVB', 'KMB', 'KLB', 'IRB', 'TFB', 'WMB', 'PHB']
@@ -173,8 +173,10 @@ def Fn_Create_Day_DB(NumDaysBefore):
     FileYear = str(FileList[0])
     FMonth = int(FileList[1])
     FileMonth = meses[(FMonth-1)]
+
     Fday = int(FileList[2])
     FileDay = str(Fday - NumDaysBefore)
+
 
     for i in jobs_index:
             if jobs_year[i] == FileYear:
@@ -206,8 +208,8 @@ def Fn_Create_Day_DB(NumDaysBefore):
     if not os.path.isdir(saveMonthPath) == True:
         os.makedirs(saveMonthPath)  
 
-    CSV_filter = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\CSV_FINAL\\relatorios_" + str(saveMonth)
-    path = os.chdir(r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\CSV_FINAL\\relatorios_" + str(saveMonth))
+    CSV_filter = r"S:\\A R Q U I V O S\\FERRAMENTAS\\GitRepository\\Auto_Typeform\\CSV_FINAL\\relatorios_" + str(saveMonth)
+    path = os.chdir(r"S:\\A R Q U I V O S\\FERRAMENTAS\\GitRepository\\Auto_Typeform\\CSV_FINAL\\relatorios_" + str(saveMonth))
     path_list = os.listdir(path)
     #print(path_list)
     savePath = str(CSV_dir) + '\\TypeForm_' + str(saveDate) + '.csv'

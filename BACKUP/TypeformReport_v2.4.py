@@ -43,8 +43,8 @@ saveDate = saveToday - timedelta(1)
 saveDate = saveDate.strftime("%y-%m-%d")
 saveMonth = saveDate[0:5]
 
-#CSV_filter = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\CSV_FINAL\\relatorios_" + str(saveMonth)
-CSV_filter = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\CSV_FINAL\\relatorios_22-01"
+#CSV_filter = r"S:\\A R Q U I V O S\\FERRAMENTAS\\GitRepository\\AutoTypeform\\CSV_FINAL\\relatorios_" + str(saveMonth)
+CSV_filter = r"S:\\A R Q U I V O S\\FERRAMENTAS\\GitRepository\\AutoTypeform\\CSV_FINAL\\relatorios_22-01"
 files = Path(CSV_filter).rglob('*.csv')
 df = pd.concat(map(pd.read_csv, files))
 
@@ -136,7 +136,7 @@ sns.barplot(data=df_JM_final, x='Produção', y='Total de artes por mês').set_t
 
 ##  IMPRIMINDO E SALVANDO RELATORIO 01
 
-Report01 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 01_" + str(saveMonth) + ".png"
+Report01 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\GitRepository\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 01_" + str(saveMonth) + ".png"
 plt.tight_layout()
 plt.savefig(Report01)
 
@@ -172,7 +172,7 @@ for i in enumerate(reportJORNAIS):
     sns.barplot(data=df_DIN, x='Dia', y='Total de artes').set_title('Total Artes ' + str(prodDin) + ' no Mês')
 
 
-Report02 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 02_" + str(saveMonth) + ".png"
+Report02 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\GitRepository\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 02_" + str(saveMonth) + ".png"
 plt.tight_layout()
 plt.savefig(Report02)
 
@@ -208,7 +208,7 @@ for i in enumerate(reportART):
     sns.barplot(data=df_DIN, x='Dia', y='Total de artes').set_title('Total Artes ' + str(prodDinArt) + ' no Mês')
 
 
-Report03 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 03_" + str(saveMonth) + ".png"
+Report03 = r"S:\\A R Q U I V O S\\FERRAMENTAS\\GitRepository\\AutoTypeform\\RELATORIOS_FINAIS\\RELATÓRIO 03_" + str(saveMonth) + ".png"
 plt.tight_layout()
 plt.savefig(Report03)
 plt.show()
